@@ -1,0 +1,130 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+/* Logo Principal - Ajusta el width para cambiar el tamaño */
+.banner {
+  margin-bottom: 3rem;
+  position: relative;
+  z-index: 10; /* Asegura que esté arriba del hero */
+  width: 100%;
+  padding: 2rem 0;
+}
+
+.banner img {
+  width: 800px; /* Logo más grande */
+  max-width: 95%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Responsive: Logo más pequeño en tablets */
+@media (max-width: 1024px) {
+  .banner img {
+    width: 600px;
+    max-width: 90%;
+  }
+}
+
+@media (max-width: 768px) {
+  .banner img {
+    width: 500px;
+    max-width: 85%;
+  }
+}
+
+/* Responsive: Logo aún más pequeño en móviles */
+@media (max-width: 480px) {
+  .banner img {
+    width: 350px;
+    max-width: 80%;
+  }
+  
+  .banner {
+    margin-bottom: 2rem;
+    padding: 1rem 0;
+  }
+}
+
+/* Rate Limit Indicator */
+.rate-limit-info {
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.rate-limit-info p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.875rem;
+}
+
+.rate-limit-info .font-bold {
+  font-weight: 700;
+  color: #fff;
+}
+
+/* Reset Button */
+.reset-button {
+  background: rgba(239, 68, 68, 0.8);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.reset-button:hover {
+  background: rgba(239, 68, 68, 1);
+  transform: translateY(-1px);
+}
+
+.reset-button:active {
+  transform: translateY(0);
+}
