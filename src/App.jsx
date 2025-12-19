@@ -4,6 +4,7 @@ import Spinner from "./components/Spinner";
 import MovieCard from "./components/MovieCard";
 import { useDebounce } from "react-use";
 import { getTrendingMovies, updateSearchCount } from "../appwrite";
+import useRateLimit from "./hooks/useRateLimit";
 
 const API_BASE_URL = "https://api.themoviedb.org/3";
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
@@ -24,6 +25,8 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState("");
 
+  const { canMakeRequest, makeRequest } = useRateLimit(30, 1800000); // 30 mins window
+
   useDebounce(() => setDebouncedSearchTerm(searchTerm), 500, [searchTerm]);
 
   const loadTrendingMovies = async () => {
@@ -36,6 +39,12 @@ const App = () => {
   };
 
   const fetchMovies = async (query = "") => {
+    if (query && !canMakeRequest) {
+      setErrorMessage("Has alcanzado el límite de búsquedas. Por favor, intenta de nuevo en unos minutos.");
+      setIsLoading(false);
+      return;
+    }
+
     setIsLoading(true);
     setErrorMessage("");
 
@@ -60,6 +69,7 @@ const App = () => {
       setMovieList(data.results || []);
       if (query && data.results.length > 0) {
         await updateSearchCount(query, data.results[0]);
+        makeRequest(); // Registrar solo si es una búsqueda válida
       }
     } catch (error) {
       console.error(`Error al obtener peliculas: ${error}`);
@@ -84,7 +94,7 @@ const App = () => {
         <header>
           {/* Logo principal - Ajusta el tamaño en App.css buscando .banner img */}
           <div className="banner">
-            <img src="/nuevologo.png" alt="Peliverse" />
+            <img src="/pelipop.png" alt="PeliPop" />
           </div>
           <img src="./hero.png" alt="" />
           <h1>
