@@ -132,6 +132,10 @@ const App = () => {
             </ul>
           )}
         </section>
+
+        <footer className="footer">
+          <p>© 2025 Desarrollado por <span className="author-name">matiascoder</span></p>
+        </footer>
       </div>
     </main>
   );
